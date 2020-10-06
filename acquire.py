@@ -13,12 +13,12 @@ def get_connection(db, user = user, host = host, password = password):
     '''
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
 
-def new_zilow_data():
+def new_zillow_data():
     '''
     This function reads the zillow data from CodeUp database into a df,
     write it to a csv file, and returns the df.
     '''
-    sql_query = """select calculatedfinishedsquarefeet, bedroomcnt, bathroomcnt, taxvaluedollarcnt
+    sql_query = """select *
                     
                     from properties_2017 as prop
 
@@ -26,14 +26,9 @@ def new_zilow_data():
 
                     where transactiondate BETWEEN '2017-05-01' AND '2017-06-30'
 
-                    and propertylandusetypeid = 261
-
-                    and calculatedfinishedsquarefeet is not null
-
-                    and bedroomcnt > 0
-
-                    and bathroomcnt > 0;
+                    and propertylandusetypeid = 261;
                 """
+
     df = pd.read_sql(sql_query, get_connection('zillow'))
     df.to_csv('zillow_df.csv')
     return df
