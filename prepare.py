@@ -87,3 +87,34 @@ def scale_wrangle_mvp_zillow(cached=True):
     #scales columns
     train, validate, test = add_scaled_columns(train, validate, test, columns_to_scale)
     return train, validate, test
+
+def prep_zillow_final(cached=True):
+    '''
+        This function obtains all zillow data for single family units,
+        renames the columns,
+        and converts it into our prefered final state
+        by dropping or filling null values and dealing with zeros.
+    '''
+    df = get_zillow_data()
+    columns_to_drop = ['airconditioningtypeid', 'architecturalstyletypeid', 'basementsqft', 'buildingclasstypeid',
+                  'decktypeid', 'finishedfloor1squarefeet', 'finishedsquarefeet12', 'finishedsquarefeet13',
+                  'finishedsquarefeet15', 'finishedsquarefeet50', 'finishedsquarefeet6', 'fireplacecnt',
+                  'hashottuborspa', 'poolsizesum', 'pooltypeid10', 'pooltypeid2', 'pooltypeid7', 'storytypeid',
+                  'threequarterbathnbr', 'typeconstructiontypeid', 'yardbuildingsqft17', 'yardbuildingsqft26',
+                  'fireplaceflag', 'taxdelinquencyflag', 'taxdelinquencyyear', 'id', 'buildingqualitytypeid',
+                  'calculatedbathnbr', 'latitude', 'longitude', 'propertylandusetypeid', 'rawcensustractandblock',
+                  'regionidcity', 'regionidcounty', 'regionidneighborhood', 'regionidzip', 'unitcnt',
+                  'structuretaxvaluedollarcnt', 'landtaxvaluedollarcnt', 'assessmentyear', 'taxamount',
+                  'censustractandblock', 'transactiondate', 'propertyzoningdesc', 'logerror', 'parcelid',
+                  'numberofstories', 'garagecarcnt', 'garagetotalsqft', 'heatingorsystemtypeid', 'propertycountylandusecode']
+    df = df.drop(columns=columns_to_drop)
+    df = df.drop(columns=['id.1', 'parcelid.1'])
+    df = df.rename(columns={'bathroomcnt': 'bathroom', 'bedroomcnt': 'bedroom', 'calculatedfinishedsquarefeet': 'sqft',
+                        'taxvaluedollarcnt': 'propertytaxvalue', 'lotsizesquarefeet': 'lotsqft'})
+    df['poolcnt'] = df.poolcnt.fillna(0)
+    df['roomcnt'] = np.where(df['roomcnt'] == 0.0, (df.bathroom + df.bedroom), df['roomcnt'])
+    df = df[~df['fullbathcnt'].isna()]
+    df = df[df['bedroom'] != 0]
+    df = df[~df['lotsqft'].isna()]
+    df = df[~df['yearbuilt'].isna()]
+    return df
