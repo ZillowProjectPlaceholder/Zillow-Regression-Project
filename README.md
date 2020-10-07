@@ -1,5 +1,5 @@
 <a id='section_6'></a>
-# <h1><center>Zillow Regression Project</center></h1>
+<h1><center>Zillow Regression Project</center></h1>
 <center> Author: Matthew Mays, Gilbert Noriega </center>
 
 [About the Project](#section_1) [Data Dictionary](#section_2) [Initial Hypotheses/Thoughts](#section_3) [Project Plan](#section_4) [How to Reproduce](#section_5)
@@ -11,13 +11,21 @@
 ___
 
 ### Background
-> List background here.
-If you use this dataset in your research, please credit the authors
+> We are junior data scientists on the Zillow data science team and are given a dataset containing millions of rows of data for houses in the United States. The "hot months" (in terms of real estate demand) are approaching quickly and the team needs to know what are the drivers for predicting single unit properties tax value. To complicate the matter, Zach lost the email that told us where these properties were located. Ugh, Zach :-/. Because property taxes are assessed at the county level, we would like to know what states and counties the properties are located in. Oh, did I forget to mention we needed it yesterday? 
+>>
+> So.... What are you waiting around for? Let's get started already!
+
+___
+>*Acknowledgement:The dataset was provided by Codeup from the MySequel Database* 
 
 ___
 
 ### Goals
-> My goal for this project is to create a model that will ___. I will deliver the following: acquire.py, prepare.py, model.py, report.ipynb, and predictions.csv
+> Our goal for this project is to create a model that will predict the values of single unit properties that the tax district assesses using the property data from those whose last transaction was during the months of May and June in 2017. We will deliver the following: 
+>
+> - a report in the form of a presentation
+> - a github repository containing an acquire.py, prepare.py, model.py, and a jupyter notebook walkthrough
+> - the distribution of tax rates for each county
   
 [back to the top](#section_6)
 
@@ -28,12 +36,19 @@ ___
 
 | Features | Definition |
 | :------- | :-------|
-| Feature1 | definition |
-| Feature2 | definition |
+| bathroom | the amount of bathrooms inside the home |
+| bedroom  | the amount of bedrooms inside the home |
+| sqft| the total square feet of the home |
+| fips  | numeric codes which uniquely identify geographic areas |
+| fullbathcnt | the amount of full bathrooms(shower included) inside the home |
+| lotsqft  | the total square feet of the entire property |
+| poolcnt | amount of pools at the home|
+| roomcnt  | the total amount of rooms inside the home |
+| yearbuilt | the year the home was built |
 
 |  Target  | Definition |
 |:-------- |:---------- |
-|  target  | definition |
+|  propertytaxvalue  | value of properties that the tax district assesses |
 
 [back to the top](#section_6)
 ___
@@ -68,8 +83,10 @@ ___
 ## Project Plan: Breaking it Down
 
 >- acquire
->    - acquire data from _____ (join tables)
+>    - acquire data from MySQL
+>       - join tables to include transaction date
 >    - save as a pandas dataframe
+>    - summarize the data
 >    - plot distribution
 
 >- prepare
@@ -81,11 +98,11 @@ ___
 >- explore
 >    - plot correlation matrix of all variables
 >    - test each hypothesis
->    - plot the continuous variables using a swarmplot or boxplot
+>    - plot the continuous variables
 
 >- model and evaluation
->    - try different algorithms: decision tree, logistic regression, random forest, knn, svm
->    - which features are most influential?
+>    - which features are most influential: use SelectKBest and rfe
+>    - try different algorithms: LinearRegression, LassoLars, Polynomial Regression
 >    - evaluate on train
 >    - select top 3 +/- models to evaluate on validate
 >    - select best model
@@ -96,7 +113,6 @@ ___
 >    - summarize findings
 >    - make recommendations
 >    - next steps
->    - how to run with new data.
 
 
 [back to the top](#section_6)
@@ -106,8 +122,9 @@ ___
 <a id='section_5'></a>
 ## How to Reproduce
 
->1. Download data from 
+>1. Download data from zillow database in MySQL with Codeup credentials.
 >2. Install acquire.py, prepare.py and model.py into your working directory.
->3. Run the jupyter notebook.
+>3. Run a jupyter notebook importing the necessary libraries and functions.
+>4. Follow along in report.ipynb or forge your own exploratory path. 
 
 [back to the top](#section_6)
