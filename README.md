@@ -117,6 +117,6 @@ ___
 >1. Download data from zillow database in MySQL with Codeup credentials.
 >2. Install acquire.py, prepare.py and model.py into your working directory.
 >3. Run a jupyter notebook importing the necessary libraries and functions.
->4. Follow along in report.ipynb or forge your own exploratory path. 
+>4. Follow along in distribution_report.ipynb/property_values_report or forge your own exploratory path. 
 
 [back to the top](#section_6)
