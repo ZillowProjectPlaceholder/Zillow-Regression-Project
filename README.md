@@ -53,29 +53,22 @@ ___
 [back to the top](#section_6)
 ___
 <a id='section_3'></a>
-## Initial Hypotheses & Thoughts
+## Initial Hypothesis & Thoughts
 
 >### Thoughts
 >
 > - We could add a new feature?
 > - Should I turn the continuous variables into booleans?
 
->### Hypotheses
->    - One Sample T-Test : A T-test lets us compare a categorical and a continuous variable by comparing the mean of the continuous variable by subgroups based on the categorical variable.
->       - H<sub>0</sub>: there is no difference between left-handers exam scores and the overall average.
->       - H<sub>a</sub>: there is a difference between left-handers exam scores and the overall average.
+>### Hypothesis
+> - Hypothesis 1:
+>   - H<sub>0</sub>: Tax value and the amount of bedrooms are **independent**
+>   - H<sub>a</sub>: Tax value and the amount of bedrooms are **dependent**
+>
+> - Hypothesis 2:
+>   - H<sub>0</sub>: There is **no difference** in tax value between houses with pools and houses without pools
+>   - H<sub>a</sub>: There is **a difference** in tax value between houses with pools and houses without pools
 
->   - Two Sample T-Test:  A T-test lets us compare a categorical and a continuous variable by comparing the means between two different supgroups. 
->        - H<sub>0</sub>: There is no difference in the exam scores for those who studied with flashcards and those who didn't.
->        - H<sub>a</sub>: There is a difference in the exam scores for those who studied with flashcards and those who didn't.
-
->    - Correlation: A correlation test lets us compare a continuous variabe with another continuous variable to see if there is a relationship, not a causation. 
->       - H<sub>0</sub>: There is no linear correlation between the number of hours studied and the score on the exam.
->       - H<sub>a</sub>: There is a linear correlation between the number of hours studied and the score on the exam.
-
->   - x<sup>2</sup>: The x<sup>2</sup> test can be used to compare two categorical variables to see if they are independent or dependent. 
->        - H<sub>0</sub>: Drive is independent of transmission type.
->        - H<sub>a</sub>: Drive is dependent of transmission type.
 
 [back to the top](#section_6)
 ___
@@ -88,27 +81,26 @@ ___
 >    - save as a pandas dataframe
 >    - summarize the data
 >    - plot distribution
-
+>
 >- prepare
 >    - address missing data
->    - address outliers
 >    - create features
 >    - split into train, validate, test
-
+>
 >- explore
->    - plot correlation matrix of all variables
 >    - test each hypothesis
 >    - plot the continuous variables
-
+>    - plot correlation matrix of all variables
+>
 >- model and evaluation
 >    - which features are most influential: use SelectKBest and rfe
 >    - try different algorithms: LinearRegression, LassoLars, Polynomial Regression
 >    - evaluate on train
->    - select top 3 +/- models to evaluate on validate
+>    - evaluate on validate
 >    - select best model
 >    - create a model.py that pulls all the parts together.
 >    - run model on test to verify.
-
+>
 >- conclusion
 >    - summarize findings
 >    - make recommendations
